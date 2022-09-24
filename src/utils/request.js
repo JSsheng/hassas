@@ -3,7 +3,7 @@ import axios from 'axios'
 // ? 创建axios的实例
 /* eslint-disable */
 const service = axios.create({
-  baseUrl: '/dev',
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout:5000
 })
 export default service
