@@ -14,7 +14,6 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 import * as directive from '@/directives'
-console.log(directive)
 console.log(Object.keys(directive))
 Object.keys(directive).forEach(ele => {
   Vue.directive(ele, directive[ele])
