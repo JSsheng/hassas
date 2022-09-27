@@ -16,7 +16,7 @@ const store = new Vuex.Store({
   },
   getters,
   plugins: [createBundleRenderer({
-    paths: ['user.token']
+    paths: ['user.token', 'uder.hrsaasTime']
   })]
 })
 

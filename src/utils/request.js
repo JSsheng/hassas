@@ -1,7 +1,14 @@
 // ? 对axios的二次封装
+import router from '@/router'
 import store from '@/store'
 import axios from 'axios'
 import { Message } from 'element-ui'
+const TimeOut = 3600 // s
+function IsCheckTimeOut() {
+  const currentTime = new Date()
+  const timeStamp = (currentTime - store.getters.hrsaasTime) / 1000
+  return timeStamp > TimeOut
+}
 // ? 创建axios的实例
 // /* eslint-disable */
 const service = axios.create({
@@ -10,6 +17,11 @@ const service = axios.create({
 })
 service.interceptors.request.use(config => {
   if (store.getters.token) {
+    if (IsCheckTimeOut()) {
+      store.dispatch('user/logout')
+      router.push('/login')
+      return Promise.reject(new Error('token过期了'))
+    }
     config.headers.Authorization = `Bearer ${store.getters.token}`
   }
   return config
@@ -28,7 +40,13 @@ service.interceptors.response.use(response => {
   Message.error(message)
   return Promise.reject(new Error(message))
 }, error => {
-  Message.error(error.message)
+  if (error.response && error.response.status === 401) {
+    store.dispatch('user/logout')
+    router.push('/login')
+    Message.error('token过期了')
+  } else {
+    Message.error(error.message)
+  }
   return Promise.reject(error)
 })
 export default service
