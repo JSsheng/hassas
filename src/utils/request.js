@@ -20,7 +20,7 @@ service.interceptors.request.use(config => {
     if (IsCheckTimeOut()) {
       store.dispatch('user/logout')
       router.push('/login')
-      return Promise.reject(new Error('token过期了'))
+      // return Promise.reject(new Error('token过期了'))
     }
     config.headers.Authorization = `Bearer ${store.getters.token}`
   }
@@ -43,7 +43,7 @@ service.interceptors.response.use(response => {
   if (error.response && error.response.status === 401) {
     store.dispatch('user/logout')
     router.push('/login')
-    Message.error('token过期了')
+    // Message.error('token过期了')
   } else {
     Message.error(error.message)
   }
