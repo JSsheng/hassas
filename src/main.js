@@ -16,6 +16,14 @@ import '@/permission' // permission control
 import components from '@/components'
 Vue.use(components)
 
+// import PageTools from '@/components/PageTools'
+// import UploadExcel from '@/components/UploadExcel'
+// export default {
+//   install(Vue) {
+//     Vue.component('PageTools', PageTools) // 注册工具栏组件
+//     Vue.component('UploadExcel', UploadExcel) // 注册导入excel组件
+//   }
+// }
 import * as directive from '@/directives'
 console.log(Object.keys(directive))
 Object.keys(directive).forEach(ele => {

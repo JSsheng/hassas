@@ -1,5 +1,6 @@
 import PageTools from './PageTools/index.vue'
-const components = [PageTools]
+import UploadExcel from './UploadExcel/index.vue'
+const components = [PageTools, UploadExcel]
 export default {
   install: function(Vue) {
     components.forEach(ele => {

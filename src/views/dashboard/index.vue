@@ -1,6 +1,9 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
+    <svg-icon icon-class="eye" />
+
+    <!-- <UploadExcel :before-upload="beforeUpload" :on-success="onSuccess" /> -->
   </div>
 </template>
 
