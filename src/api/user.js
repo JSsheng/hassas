@@ -7,6 +7,14 @@ export function getUserInfo() {
   })
 }
 
-export const getUserDetailById = (id) => ({
-  url: `/sys/user/${id}`
+export const getUserDetailById = (id) => request({
+  url: `/sys/user/${id}`,
+  method: 'get'
 })
+
+export const saveUserDetailById = (data) => request({
+  url: `/sys/user/${data.id}`,
+  method: 'put',
+  data
+})
+

@@ -50,3 +50,31 @@ export function importEmployee(data) {
     data
   })
 }
+
+export function getEmployessInfo(id) {
+  return request({
+    url: `/employees/${id}/personalInfo`
+  })
+}
+
+export function saveEmployeesInfo(data) {
+  return request({
+    url: `/employees/${data.userid}/personalInfo`,
+    method: 'PUT',
+    data
+  })
+}
+
+export function getEmployeesJosInfo(id) {
+  return request({
+    url: `/employees/${id}/jobs`
+  })
+}
+
+export function saveEmployeesJosInfo(data) {
+  return request({
+    url: `/employees/${data.id}/jobs`,
+    method: 'PUT',
+    data
+  })
+}

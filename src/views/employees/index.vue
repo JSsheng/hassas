@@ -3,7 +3,7 @@
     <template>
       <div class="app-container">
         <PageTools>
-          <span slot="before">共166条记录</span>
+          <span slot="before">共{{ total }}条记录</span>
           <template slot="after">
             <el-button size="small" type="warning" @click="$router.push('/import')">导入</el-button>
             <el-button size="small" type="danger" @click="exportExcel">导出</el-button>
@@ -31,7 +31,7 @@
             </el-table-column>
             <el-table-column label="操作" fixed="right" width="280">
               <template slot-scope="{row}">
-                <el-button type="text" size="small">查看</el-button>
+                <el-button type="text" size="small" @click="goDetai(row)">查看</el-button>
                 <el-button type="text" size="small">转正</el-button>
                 <el-button type="text" size="small">调岗</el-button>
                 <el-button type="text" size="small">离职</el-button>
@@ -104,7 +104,7 @@ export default {
     },
     formatterFn(row, column, cellValue) {
       const res = this.hireType.find(ele => ele.id === cellValue)
-      return res.value
+      return res ? res.value : '未知'
     },
     handleEmploy() {
       this.dialogVisible = true
@@ -157,6 +157,9 @@ export default {
         autoWidth: true, // 非必填
         bookType: 'xlsx' // 非必填
       })
+    },
+    goDetai(row) {
+      this.$router.push('/employees/detail/' + row.id)
     }
   }
 }
