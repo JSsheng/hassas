@@ -9,12 +9,14 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+import print from 'vue-print-nb'
 
 import '@/icons' // icon
 import '@/permission' // permission control
 
 import components from '@/components'
 Vue.use(components)
+Vue.use(print)
 
 // import PageTools from '@/components/PageTools'
 // import UploadExcel from '@/components/UploadExcel'
